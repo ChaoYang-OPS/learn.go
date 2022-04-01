@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main()  {
+func main() {
 	var name string = "hello, golang!"
 	fmt.Println(name)
 	var age int = 35
@@ -17,6 +17,5 @@ func main()  {
 
 	//tall = age  // Cannot use 'age' (type int) as the type float64 类型不兼容
 	// 变量必须先定义，才能使用
-
 
 }
