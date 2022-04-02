@@ -26,4 +26,7 @@ func main() {
 	for i, val := range ages4 {
 		fmt.Println(ages4[i], "====>", i, "---->", val)
 	}
+
+	//var num *int
+	//*num++  panic: runtime error: invalid memory address or nil pointer dereference
 }
