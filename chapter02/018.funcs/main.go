@@ -9,10 +9,13 @@ var tall float64
 var weight float64
 
 func main() {
+	panicAndRecover()
 	// close call
 	closureMain()
 	calcSum(1,2,3,4,5)
 	showUsedTimes()
+	deferGuess()
+	openFile()
 	//guess(1, 100)
 	//tall, weight = 1.70, 70.0
 	fmt.Println(fib(10))
