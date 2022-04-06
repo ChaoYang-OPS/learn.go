@@ -1,13 +1,22 @@
 package main
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 var (
 	personFatRage  = map[string]float64{}
 )
 
-func inputRecord(name string, fatRate float64) {
-	personFatRage[name] = fatRate
+func inputRecord(name string, fatRate ...float64) {
+	minFatRate := math.MaxFloat64
+	for _, item := range  fatRate {
+		if minFatRate > item {
+			minFatRate =item
+		}
+	}
+	personFatRage[name] = minFatRate
 }
 
 func getRank(name string) (rank int,fatRate float64 ) {
