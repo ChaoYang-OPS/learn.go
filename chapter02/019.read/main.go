@@ -28,7 +28,10 @@ func main() {
 			fmt.Println("weight:", weight)
 			fmt.Println("age:", age)
 			// 评估结果
-			bmi := calc.CalcBMI(tall, weight)
+			bmi ,err := calc.CalcBMI(tall, weight)
+			if err != nil {
+				return
+			}
 			fatRage := calc.CalcFatRate(bmi, age, sex)
 			fmt.Println("FatRage:", fatRage)
 		},
