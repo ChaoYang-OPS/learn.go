@@ -103,6 +103,14 @@ func NoFileCompletions(cmd *Command, args []string, toComplete string) ([]string
 	return nil, ShellCompDirectiveNoFileComp
 }
 
+// FixedCompletions can be used to create a completion function which always
+// returns the same results.
+func FixedCompletions(choices []string, directive ShellCompDirective) func(cmd *Command, args []string, toComplete string) ([]string, ShellCompDirective) {
+	return func(cmd *Command, args []string, toComplete string) ([]string, ShellCompDirective) {
+		return choices, directive
+	}
+}
+
 // RegisterFlagCompletionFunc should be called to register a function to provide completion for a flag.
 func (c *Command) RegisterFlagCompletionFunc(flagName string, f func(cmd *Command, args []string, toComplete string) ([]string, ShellCompDirective)) error {
 	flag := c.Flag(flagName)
@@ -312,7 +320,7 @@ func (c *Command) getCompletions(args []string) (*Command, []string, ShellCompDi
 	var directive ShellCompDirective
 
 	// Note that we want to perform flagname completion even if finalCmd.DisableFlagParsing==true;
-	// doing this allows for completion of persistant flag names even for commands that disable flag parsing.
+	// doing this allows for completion of persistent flag names even for commands that disable flag parsing.
 	//
 	// When doing completion of a flag name, as soon as an argument starts with
 	// a '-' we know it is a flag.  We cannot use isFlagArg() here as it requires
@@ -668,6 +676,10 @@ If shell completion is not already enabled in your environment you will need
 to enable it.  You can execute the following once:
 
 	echo "autoload -U compinit; compinit" >> ~/.zshrc
+
+To load completions in your current shell session:
+
+	source <(%[1]s completion zsh); compdef _%[1]s %[1]s
 
 To load completions for every new session, execute once:
 

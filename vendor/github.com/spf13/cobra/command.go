@@ -166,7 +166,7 @@ type Command struct {
 	// errWriter is a writer defined by the user that replaces stderr
 	errWriter io.Writer
 
-	//FParseErrWhitelist flag parse errors to be ignored
+	// FParseErrWhitelist flag parse errors to be ignored
 	FParseErrWhitelist FParseErrWhitelist
 
 	// CompletionOptions is a set of options to control the handling of shell completion
@@ -224,10 +224,21 @@ type Command struct {
 	SuggestionsMinimumDistance int
 }
 
-// Context returns underlying command context. If command wasn't
-// executed with ExecuteContext Context returns Background context.
+// Context returns underlying command context. If command was executed
+// with ExecuteContext or the context was set with SetContext, the
+// previously set context will be returned. Otherwise, nil is returned.
+//
+// Notice that a call to Execute and ExecuteC will replace a nil context of
+// a command with a context.Background, so a background context will be
+// returned by Context after one of these functions has been called.
 func (c *Command) Context() context.Context {
 	return c.ctx
+}
+
+// SetContext sets context for the command. It is set to context.Background by default and will be overwritten by
+// Command.ExecuteContext or Command.ExecuteContextC
+func (c *Command) SetContext(ctx context.Context) {
+	c.ctx = ctx
 }
 
 // SetArgs sets arguments for the command. It is set to os.Args[1:] by default, if desired, can be overridden
