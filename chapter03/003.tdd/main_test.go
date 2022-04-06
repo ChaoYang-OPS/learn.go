@@ -49,9 +49,9 @@ func TestCase2(t *testing.T) {
 		}
 	}
 	{
-		randOfZW, fatRateOfWQ := getRank("王强")
-		if randOfZW != 2 {
-			t.Fatalf("预期 王强 第二，但是得到的是： %d", randOfZW)
+		randOfWQ, fatRateOfWQ := getRank("王强")
+		if randOfWQ != 2 {
+			t.Fatalf("预期 王强 第二，但是得到的是： %d", randOfWQ)
 		}
 		if fatRateOfWQ != 0.38 {
 			t.Fatalf("预期王强的体脂是0.32, 但得到的是: %f", fatRateOfWQ)
