@@ -25,6 +25,7 @@ func TestCase1(t *testing.T) {
 		}
 	}
 }
+
 func TestCase2(t *testing.T) {
 
 }
