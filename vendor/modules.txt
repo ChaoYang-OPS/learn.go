@@ -1,3 +1,6 @@
+# github.com/armstrongli/go-bmi v0.0.1
+## explicit; go 1.16
+github.com/armstrongli/go-bmi
 # github.com/inconshreveable/mousetrap v1.0.0
 ## explicit
 github.com/inconshreveable/mousetrap

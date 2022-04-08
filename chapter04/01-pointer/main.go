@@ -28,6 +28,7 @@ func main() {
 	{
 		var nothingMap map[string]string
 		//nothingMap["a"] = "BBB" // panic: assignment to entry in nil map
+		// pause 51:18
 		fmt.Println(nothingMap)
 	}
 }

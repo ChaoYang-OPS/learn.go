@@ -1,3 +1,5 @@
+github.com/armstrongli/go-bmi v0.0.1 h1:yOC8LeO95p1xADH5UI69uEiOMxhx+loYZku0ZrJTIb0=
+github.com/armstrongli/go-bmi v0.0.1/go.mod h1:4MepvVYYUQ9Z+ia8NfAEJBrDYY7QfucS696e2LiaYYY=
 github.com/cpuguy83/go-md2man/v2 v2.0.1/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
