@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 type Math = int
@@ -14,6 +15,33 @@ func main() {
 	mathScore2 = mathScore
 	fmt.Println(mathScore2)
 	fmt.Println(getScoreOfStudent(""))
+	vg := &voteGame{
+		students: []*student{
+			&student{
+				name: fmt.Sprintf("%d",1),
+			},
+			&student{
+				name: fmt.Sprintf("%d",2),
+			},
+			&student{
+				name: fmt.Sprintf("%d",3),
+			},
+			&student{
+				name: fmt.Sprintf("%d",4),
+			},
+			&student{
+				name: fmt.Sprintf("%d",5),
+			},
+			&student{
+				name: fmt.Sprintf("%d",6),
+			},
+			&student{
+				name: fmt.Sprintf("%d",7),
+			},
+		},
+	}
+	leader := vg.goRun()
+	fmt.Println(leader)
 }
 
 func getScoreOfStudent(name string) (Math,Chinese,English) {
@@ -28,7 +56,12 @@ type voteGame struct {
 func (g *voteGame) goRun() *leader {
 	// todo ....
 	for _,item := range g.students{
-		item.voteA(g.students[0])  // todo 用随机数代替
+		rnadInt := rand.Int()
+		if rnadInt %2 == 0 {
+			item.voteA(g.students[rnadInt%len(g.students)])
+		} else {
+			item.voteA(g.students[rnadInt%len(g.students)])  // todo 用随机数代替
+		}
 	}
 	maxScore := -1
 	maxScoreIndex := -1
@@ -46,6 +79,7 @@ func (g *voteGame) goRun() *leader {
 
 type leader = student
 type student struct {
+	name string
 	agree int
 	disagree int
 }
