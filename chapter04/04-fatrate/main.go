@@ -8,8 +8,13 @@ func main() {
 	c.BMI(person)
 	c.FatRate(person)
 	fmt.Println(person)
-	sugg := fatRateSuggestion{}
-	fmt.Println(sugg.GetSuggestion(person))
+
+	frSvc := &fatRateService{
+		s: GetFatRateSuggestion(),
+	}
+	frSvc.s = GetFatRateSuggestion()
+	fakePerson := getFakePersonInfo()
+	fmt.Println(frSvc.GiveSuggestionToPerson(fakePerson))
 }
 
 func getPersonInfoFromInput() (*Person) {
