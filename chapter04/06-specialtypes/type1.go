@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sort"
 )
 
 type Math = int
@@ -47,6 +48,7 @@ func main() {
 
 	bytesTest1 := []byte{}
 	var str1 string = string(bytesTest1)
+	// 1:1
 	fmt.Println(str1)
 }
 
@@ -72,8 +74,8 @@ type Leader student
 type FooTestFuncRedefine func()
 type FooTestFuncRedefine1 []string // 类型可以是任意的
 
-func (f *FooTestFuncRedefine) test111() {
-
+func (f FooTestFuncRedefine1) Sort() {
+	sort.Strings(f)
 }
 
 func (g *voteGame) goRun() *Leader {
