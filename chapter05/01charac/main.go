@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 // 接口只能定义方法，不允许有任何变量
 // 接口是引用类型
@@ -74,11 +77,18 @@ func main() {
 	var o Open = Refrigerator{}
 	var c Close = Refrigerator{}
 	fmt.Println(o, c)
-	// 大接口可以往小接口赋值
+	// 从范围小的向范围大转换会成功
+	// 从范围大的向范围小的转会失败
 	var b Box = Refrigerator{}
 	fmt.Println(b)
 	c = b
+	//b = c
 
+	var i interface{}
+	i = 3
+	fmt.Println(reflect.TypeOf(i),"value:",i)
+	i = 3.2
+	fmt.Println(reflect.TypeOf(i),"value:",i)
 }
 
 type Open interface {
@@ -86,7 +96,7 @@ type Open interface {
 }
 
 type Close interface {
-	Open() error
+	Close() error
 }
 
 func (Refrigerator) Open() error {
