@@ -1,29 +1,24 @@
 package main
 
-import "sync"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
 
 type Rank struct {
 	standard []string
 }
 
 var globalRank = &Rank{}
-
-var globalRankInitialized bool = false
-var globalRankInitializedLock sync.Mutex
-
-func init() {
-	globalRank.standard = []string{"Asia"}
-}
+var once sync.Once = sync.Once{}
 
 func initGlobalRankStandard(standard []string) {
-	globalRankInitializedLock.Lock()
-	defer globalRankInitializedLock.Unlock()
-
-	if globalRankInitialized {
-		return
-	}
-	globalRank.standard = standard
-	globalRankInitialized = true
+	// 只做一次
+	once.Do(func() {
+		globalRank.standard = standard
+		fmt.Println("settings.....")
+	})
 }
 
 func main() {
@@ -33,4 +28,5 @@ func main() {
 			initGlobalRankStandard(standard)
 		}()
 	}
+	time.Sleep(1*time.Second)
 }
