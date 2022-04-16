@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	// GOOS=windows GOARCH=amd64 go build ./main.go
-	// GOOS=linux GOARCH=amd64 go build ./main.go
+	// GOOS=windows GOARCH=amd64 go build ./channel_test.go
+	// GOOS=linux GOARCH=amd64 go build ./channel_test.go
 	fmt.Println("您好, golang!")
 	fmt.Println("1.打开冰箱")
 	fmt.Println("2.把大象装进去")

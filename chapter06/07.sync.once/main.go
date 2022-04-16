@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 type Rank struct {
@@ -47,13 +46,27 @@ func (MySqlDBFactory) GetConnection() *Conn {
 	// todo
 	return nil
 }
+var counter int = 0
+var counterOnce sync.Once
+
+type School struct {
+	classroomLocation map[string]string
+}
 
 func main() {
-	standard := []string{"Asia"}
+	//standard := []string{"Asia"}
+	//for i := 0; i < 10; i++ {
+	//	go func() {
+	//		initGlobalRankStandard(standard)
+	//	}()
+	//}
+	//time.Sleep(1 * time.Second)
 	for i := 0; i < 10; i++ {
-		go func() {
-			initGlobalRankStandard(standard)
-		}()
+		fmt.Println("第x次",i )
+		counterOnce.Do(func() {
+			fmt.Println("初始化")
+			counter++
+		})
 	}
-	time.Sleep(1 * time.Second)
+	fmt.Println("最终结果:",counter)
 }
