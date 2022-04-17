@@ -140,6 +140,28 @@ func TestRangeClosedChannel(t *testing.T) {
 	fmt.Println(o1, ok) // 0 false
 }
 
+func TestPut2ClosedChannel(t *testing.T) {
+	intCh := make(chan int, 10)
+	intCh <- 1
+	intCh <- 2
+	intCh <- 3
+	intCh <- 4
+	intCh <- 5
+	close(intCh)
+	intCh <- 5 // panic: send on closed channel
+}
+
+func TestOutOnly(t *testing.T) {
+	intCh := make(chan int, 10)
+	<-intCh // fatal error: all goroutines are asleep - deadlock!
+}
+
+func TestSingleGoroutineApp(t *testing.T) {
+	intCh := make(chan int)
+	intCh <- 1 // fatal error: all goroutines are asleep - deadlock!
+	<-intCh    // fatal error: all goroutines are asleep - deadlock!
+}
+
 // 当所有channel不ready的时候，select会等待，直到某个channel ready
 func TestSelectChannel(t *testing.T) {
 	ch1 := make(chan int)
@@ -252,4 +274,21 @@ func TestMutipleSelect(t *testing.T) {
 	fmt.Println("关闭channel", time.Now())
 	close(ch1)
 	time.Sleep(1 * time.Second)
+}
+
+func TestMultipleChannelReadySelect(t *testing.T) {
+	ch1, ch2 := make(chan int), make(chan int)
+	close(ch1)
+	close(ch2)
+	ch1Counter, ch2Counter := 0, 0
+	for i := 0; i < 10000000; i++ {
+		select {
+		case <-ch1:
+			ch1Counter++
+		case <-ch2:
+			ch2Counter++
+		}
+	}
+	fmt.Println("ch1Counter", ch1Counter)
+	fmt.Println("ch2Counter", ch2Counter)
 }
