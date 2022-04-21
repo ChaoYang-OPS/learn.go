@@ -8,7 +8,7 @@ import (
 
 func main() {
 	startTime := time.Now()
-	maxNum := 2000000
+	maxNum := 200000
 	result := make(chan int,maxNum)
 	wg := sync.WaitGroup{}
 	workerNumber := 16
