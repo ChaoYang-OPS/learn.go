@@ -1,0 +1,14 @@
+// t3 means you database name 
+mongosh "mongodb://localhost:27017/t3" --eval 'db.createUser({user: "admin",pwd: "123",roles: [ { role: "read", db: "t2" } ]})' --quiet
+mongosh "mongodb://localhost:27017/t3" --eval 'show users' --quiet
+root@VM-12-13-debian:~# mongosh "mongodb://localhost:27017/t2" --eval 'show users' --quiet
+[
+  {
+    _id: 't2.admin',
+    userId: UUID("c92228f6-9695-4798-be2f-58651600bc3d"),
+    user: 'admin',
+    db: 't2',
+    roles: [ { role: 'read', db: 't2' } ],
+    mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+  }
+]
