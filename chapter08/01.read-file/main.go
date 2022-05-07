@@ -23,5 +23,4 @@ func main() {
 	fmt.Println("读出的内容:", string(b))
 	fmt.Println("n的大小:", n)
 	fmt.Println("读出的内容：",string(b[:n]))  // 一定要给后续程序使用时， 截取到实际读取到的数据，而不是全部，否则后续程序无效读取也作为正常数据处理
-	// 1:08:28
 }
