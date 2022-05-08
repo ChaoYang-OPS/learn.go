@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package apis;
+option go_package = "./api";
+// protoc --go_out=. --plugin= types.proto
+message PersonalInformation {
+    string name = 1;
+    string sex = 2;
+    float tall =  3;
+    float weight = 4;
+    int64 age = 5;
+    string addr = 6;
+}
+
+message PersonalInformationList {
+    repeated PersonalInformation items= 1;
+}
