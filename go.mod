@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/armstrongli/go-bmi v0.0.1
+	github.com/go-sql-driver/mysql v1.6.0
 	github.com/spf13/cobra v1.4.0
 	google.golang.org/protobuf v1.28.0
 )
