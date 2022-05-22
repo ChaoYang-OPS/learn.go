@@ -6,29 +6,32 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
+	"os"
 )
 
 func main() {
 	conn := connected()
 	fmt.Println(conn)
-	errs := conn.Migrator().CreateTable(&PersonalInformation{})
-	if errs != nil {
-		fmt.Println(errs)
-		return
-	}
-	//if err := createNewPerson(conn); err != nil {
-	//	fmt.Println("创建失败")
+	//errs := conn.Migrator().CreateTable(&PersonalInformation{})
+	//if errs != nil {
+	//	fmt.Println(errs)
 	//	return
 	//}
+	if err := createNewPerson(conn); err != nil {
+		fmt.Println("创建失败")
+		return
+	}
 	//fmt.Println("成功")
 	//ormSelect(conn)
-	ormSelectWithInaccurateQuery(conn)
-	updateExistingPerson(conn)
+	//ormSelectWithInaccurateQuery(conn)
+	//updateExistingPerson(conn)
+	deletePerson(conn)
 	// 1:11:40
 }
 
 func connected() *gorm.DB {
-	conn, err := gorm.Open(mysql.Open("learn.go:123@1234@tcp(127.0.0.1:3389)/LearnGo"))
+	dsn := os.Getenv("DB_CONN")
+	conn, err := gorm.Open(mysql.Open(dsn))
 	if err != nil {
 		log.Fatalln("数据库连接失败")
 	}
@@ -41,8 +44,8 @@ func createNewPerson(conn *gorm.DB) error {
 		Name:   "TF",
 		Sex:    "男",
 		Tall:   1.70,
-		Weight: 71,
-		Age:    22,
+		Weight: 60,
+		Age:    23,
 	})
 	if err := resp.Error; err != nil {
 		fmt.Println("创建***失败", err)
@@ -90,6 +93,7 @@ func updateExistingPerson(conn *gorm.DB) error {
 		fmt.Println("更新****失败", err)
 		return err
 	}
+
 	fmt.Println("更新***成功")
 	return nil
 }
@@ -105,5 +109,16 @@ func updateExistingPersonSelectFields(conn *gorm.DB) error {
 		return err
 	}
 	fmt.Println("部分更新***成功")
+	return nil
+}
+
+func deletePerson(conn *gorm.DB) error {
+	p := &PersonalInformation{Id: 4}
+	resp := conn.Delete(p)
+	if err := resp.Error; err != nil {
+		fmt.Println("删除****失败")
+		return err
+	}
+	fmt.Println("删除****成功")
 	return nil
 }

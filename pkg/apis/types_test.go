@@ -3,12 +3,13 @@ package apis
 import (
 	"encoding/json"
 	"fmt"
+	"learn.go/pkg/apis/api"
 	"testing"
 )
 
 func TestMarshal(t *testing.T) {
-	persionalInformation := PersonalInformation{
-		name:   "TF",
+	persionalInformation := api.PersonalInformation{
+		Name:   "TF",
 		Sex:    "男",
 		Tall:   1.68,
 		Weight: 62,
