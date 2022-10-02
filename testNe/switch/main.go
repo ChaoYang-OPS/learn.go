@@ -69,9 +69,60 @@ func switchCondition() {
 func sub(n int) int {
 	return n - 1
 }
+
+func square(a interface{}) interface{} {
+	switch values := a.(type) {
+	case int:
+		return values * values
+	case byte:
+		return values * values
+	case float64:
+		return values * values
+	default:
+		return nil
+	}
+}
+func switchType() {
+	var num interface{} = 6.5
+	switch num.(type) {
+	case int:
+		fmt.Println("num is int")
+	case float64:
+		fmt.Println("num is float64")
+	case byte, string, bool:
+		fmt.Println("num is byte or string or bool")
+	default:
+		fmt.Println("other type")
+	}
+	switch value := num.(type) {
+	case int:
+		// value已经被强制转换成int类型
+		fmt.Printf("num is int %d\n", value)
+	case float64:
+		fmt.Printf("num is float64 %.2f\n", value)
+	case byte, string, bool:
+		fmt.Printf("num is byte or string or bool %v", value)
+	default:
+		fmt.Println("other type")
+	}
+
+	switch num.(type) {
+	case int:
+		vaules := num.(int)
+		fmt.Println("num is int", vaules)
+	case float64:
+		vaules := num.(float64)
+		fmt.Println("num is float64", vaules)
+	case byte, string, bool:
+		fmt.Println("num is byte or string or bool")
+	default:
+		fmt.Println("other type")
+	}
+}
 func main() {
 	basic()
 	expression()
 	switchCondition()
 	fall(60)
+	switchType()
 }
