@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func basic() {
 	color := "yellow"
@@ -119,10 +122,31 @@ func switchType() {
 		fmt.Println("other type")
 	}
 }
+
+func CheckEnvForSot(env string) string {
+	switch checkCurrentEnv(env) {
+	case "prod":
+		return "prod"
+	case "dev":
+		return "dev"
+	default:
+		return "dev"
+	}
+}
+func checkCurrentEnv(env string) string {
+	if status := strings.HasSuffix(env, "prod"); status {
+		return "prod"
+	}
+	if status := strings.HasSuffix(env, "dev"); status {
+		return "dev"
+	}
+	return "dev"
+}
 func main() {
 	basic()
 	expression()
 	switchCondition()
 	fall(60)
 	switchType()
+	fmt.Println(CheckEnvForSot("env-prod"))
 }

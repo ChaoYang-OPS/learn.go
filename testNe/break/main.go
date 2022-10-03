@@ -23,7 +23,7 @@ func continueFor() {
 		fmt.Printf("next %d\n", i+1)
 	}
 }
-func complexBreakContiunue() {
+func complexBreakContinue() {
 	const SIZE = 5
 	arr := [SIZE][SIZE]int{}
 	for i := 0; i < SIZE; i++ {
@@ -43,5 +43,5 @@ func complexBreakContiunue() {
 func main() {
 	//breakFor()
 	continueFor()
-	complexBreakContiunue()
+	complexBreakContinue()
 }
