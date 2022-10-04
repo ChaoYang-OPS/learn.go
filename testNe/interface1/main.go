@@ -32,7 +32,7 @@ func (car Car) walk() {
 }
 
 func (car Ship) whilst() error {
-	fmt.Println("whils")
+	fmt.Println("whils", car.price)
 	return nil
 }
 func (car Ship) move(a, b int) (int, error) {
@@ -44,6 +44,24 @@ func (car Ship) walk() {
 func foo(a Transporter) {
 	a.whilst()
 }
+
+type A struct {
+	Name string
+}
+type B struct {
+	Price float32
+	A     // 形式上相当B继承了A
+}
+
+type C interface {
+	foo()
+}
+
+type D interface {
+	good()
+	C
+}
+
 func main() {
 	var ifs Transporter
 	var c Car
