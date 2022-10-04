@@ -70,6 +70,15 @@ func NewStudent(name, city string, age int) *Student {
 	return s
 }
 
+func updateSlice(arr []Student) {
+	arr[0].Name = "789"
+}
+
+type Video struct {
+	Length int
+	Auther Student
+}
+
 // 成员函数
 func (user User) hello(name string) string {
 	return "hello" + name + "...." + user.name
@@ -121,4 +130,10 @@ func main() {
 	s.ChangeNameNotSuccess()
 	fmt.Println(s)
 	fmt.Println(nes)
+	arr := []Student{s, s, s, s}
+	updateSlice(arr)
+	fmt.Println(arr[0].Name)
+	v := Video{25, s}
+	v.Auther.Name = "789"
+	fmt.Println(s.Name)
 }
