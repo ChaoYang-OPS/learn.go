@@ -148,6 +148,7 @@ func valueIsEmpty() {
 	}
 }
 
+// Addr添加指针 , Elem是互反的
 // 可寻址
 func addressable() {
 	v1 := reflect.ValueOf(1)
@@ -170,6 +171,10 @@ func addressable() {
 	mp := make(map[int]bool, 5)
 	v7 := reflect.ValueOf(mp)
 	fmt.Printf("v7 is addressable %t\n", v7.CanAddr()) // false
+
+	v8 := reflect.ValueOf(&slice)
+	v9 := v8.Elem()
+	fmt.Printf("v9 is addressable %t\n", v9.CanAddr()) // true
 }
 func getMethod() {
 	typeUser := reflect.TypeOf(User{})
@@ -280,8 +285,8 @@ func callFunction() {
 	}
 	results := valueFunc.Call(args)
 	if typeFunc.Out(0).Kind() == reflect.Int {
-		i := results[0].Interface().(int)
-		fmt.Printf("sum is %d\n", i)
+		i, ok := results[0].Interface().(int)
+		fmt.Printf("sum is %d %t\n", i, ok)
 	}
 }
 
@@ -339,6 +344,23 @@ func newMap() {
 		fmt.Printf("%d %s\n", k, v.Name)
 	}
 }
+func changeTotalSlice() {
+	s := []int{1, 2, 3}
+	sType := reflect.TypeOf(s)
+	value := reflect.ValueOf(&s)
+	newSliceValues := reflect.ValueOf([]int{7, 8, 9})
+	newSliceValue := reflect.MakeSlice(sType, 3, 5)
+	fmt.Println(newSliceValue.CanAddr()) // false
+	fmt.Println(value.CanAddr())         // false
+	fmt.Println(value.Elem().CanAddr())  // true
+	// modify all slice
+	value.Elem().Set(newSliceValue)
+	fmt.Println(s) // [0,0,0]
+	newSliceValue.Index(1).SetInt(12)
+	fmt.Println(s) // [0 12 0]
+	value.Elem().Set(newSliceValues)
+	fmt.Println(s) // [7,8,9]
+}
 func valueOtherConversion() {
 	iValue := reflect.ValueOf(1)
 	sValue := reflect.ValueOf("Hello")
@@ -376,12 +398,13 @@ func main() {
 	//getStructRelation()
 	//valueOtherConversion()
 	//valueIsEmpty()
-	//addressable()
-	////changeValue()
+	addressable()
+	//changeValue()
 	//changeSlice()
 	//changeMap()
-	//callFunction()
+	callFunction()
 	callMethod()
 	newStruct()
 	newMap()
+	changeTotalSlice()
 }
