@@ -1,5 +1,3 @@
 package main
 
-
-type Asset interface {}
-
+type Asset interface{}

@@ -16,9 +16,9 @@ func showUsedTimes() {
 	fmt.Println("used:", conter)
 }
 
-func genImprovementFunc() func(percentage float64)  {
+func genImprovementFunc() func(percentage float64) {
 	base := 1000.0
-	return func(percentage float64)  {
+	return func(percentage float64) {
 		base = base * (1 + percentage)
 		fmt.Println(base)
 	}

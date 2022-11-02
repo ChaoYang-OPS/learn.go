@@ -13,6 +13,6 @@ func main() {
 		log.Fatalln(err)
 	}
 	defer resp.Body.Close()
-	data , err := ioutil.ReadAll(resp.Body)
+	data, err := ioutil.ReadAll(resp.Body)
 	fmt.Println(string(data))
 }

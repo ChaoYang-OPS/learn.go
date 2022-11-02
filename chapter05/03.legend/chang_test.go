@@ -11,7 +11,7 @@ type Change interface {
 }
 type Student struct {
 	Name string
-	Age int
+	Age  int
 }
 
 func (s *Student) ChangeName(newName string) {
@@ -39,6 +39,3 @@ func TestVal(t *testing.T) {
 	}
 	fmt.Println(stdChg)
 }
-
-
-

@@ -22,23 +22,23 @@ func main() {
 	newC.right = 200
 	fmt.Println(newC.Add())
 	// 初始化结构体，实例化map
-	mc := MyCommand{commandOptions: map[string]string{},mainCommnad: new(string)}
-	mc.commandOptions["aa"] = "AAA"  // panic: assignment to entry in nil map
+	mc := MyCommand{commandOptions: map[string]string{}, mainCommnad: new(string)}
+	mc.commandOptions["aa"] = "AAA" // panic: assignment to entry in nil map
 	*mc.mainCommnad = "test"
-	fmt.Println(*mc.mainCommnad)  // test
+	fmt.Println(*mc.mainCommnad) // test
 
 	fmt.Println(mc.ToCmdStr())
 }
 
 type MyCommand struct {
-	mainCommnad *string
+	mainCommnad    *string
 	commandOptions map[string]string
 }
 
 func (my MyCommand) ToCmdStr() string {
 	out := ""
-	for k,v := range my.commandOptions {
-		out = out + fmt.Sprintf("---%s-=%s\n",k,v)
+	for k, v := range my.commandOptions {
+		out = out + fmt.Sprintf("---%s-=%s\n", k, v)
 	}
 	return out
 }

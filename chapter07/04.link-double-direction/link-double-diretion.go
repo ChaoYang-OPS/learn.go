@@ -7,6 +7,7 @@ type LinkNode struct {
 	next *LinkNode
 	prev *LinkNode
 }
+
 // todo 后期补全算法与数据结构相关的代码
 func buildDLink() *LinkNode {
 	n1 := &LinkNode{

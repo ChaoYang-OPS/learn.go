@@ -17,7 +17,7 @@ func main() {
 	fmt.Println(frSvc.GiveSuggestionToPerson(fakePerson))
 }
 
-func getPersonInfoFromInput() (*Person) {
+func getPersonInfoFromInput() *Person {
 	var name string
 	fmt.Print("姓名：")
 	fmt.Scanln(&name)
@@ -34,20 +34,20 @@ func getPersonInfoFromInput() (*Person) {
 	fmt.Print("性别(男/女)：")
 	fmt.Scanln(&sex)
 	return &Person{
-		name: name,
-		sex: sex,
-		tall: tall,
+		name:   name,
+		sex:    sex,
+		tall:   tall,
 		weight: weight,
-		age: age,
+		age:    age,
 	}
 }
 
-func getFakePersonInfo () *Person {
+func getFakePersonInfo() *Person {
 	return &Person{
-		name: "TF",
-		sex: "男",
-		tall: 1.7,
+		name:   "TF",
+		sex:    "男",
+		tall:   1.7,
 		weight: 70,
-		age: 35,
+		age:    35,
 	}
 }

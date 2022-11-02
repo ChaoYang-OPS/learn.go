@@ -13,7 +13,7 @@ func main() {
 		fmt.Println("下个馆子")
 		if busy {
 			break
-		} else  {
+		} else {
 			fmt.Println("再吃点零食")
 		}
 	}

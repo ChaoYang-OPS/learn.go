@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func (c *Calculator) Add() int {
-	fmt.Printf("&c @Calculator %p\n",&c)
+	fmt.Printf("&c @Calculator %p\n", &c)
 	tempResult := c.left + c.right
-	c.result =tempResult
-	fmt.Println("调用add函数，c的result=",c.result)
+	c.result = tempResult
+	fmt.Println("调用add函数，c的result=", c.result)
 	return tempResult
 }
 func (c Calculator) Sub() int {

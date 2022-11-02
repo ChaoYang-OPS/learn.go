@@ -10,7 +10,7 @@ type Button struct {
 }
 
 type Elevator struct {
-	buttons Buttons
+	buttons   Buttons
 	postition int
 }
 
@@ -25,10 +25,10 @@ func (b Buttons) Less(i, j int) bool {
 }
 
 func (b Buttons) Swap(i, j int) {
-	b[i],b[j] = b[j],b[i]
+	b[i], b[j] = b[j], b[i]
 }
 
-func main()  {
+func main() {
 	ev := &Elevator{
 		postition: 2,
 		buttons: Buttons{
@@ -42,12 +42,11 @@ func main()  {
 	}
 	//sort.Sort(ev.buttons)
 	sort.Sort(sort.Reverse(ev.buttons))
-	fmt.Printf("%+v",ev.buttons)
+	fmt.Printf("%+v", ev.buttons)
 	for _, item := range ev.buttons {
 		fmt.Println(item.Floor)
 	}
 }
-
 
 func sortButtons([]*Button) []*Button {
 	return nil

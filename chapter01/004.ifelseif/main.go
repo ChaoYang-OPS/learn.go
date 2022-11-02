@@ -13,10 +13,10 @@ func main() {
 	} else if rmb <= 2000 {
 		// 如果不超过2000，去米其林
 		fmt.Println("去米其林")
-	} else if rmb <=20000 {
+	} else if rmb <= 20000 {
 		// 如果不超过20000，去新马泰
 		fmt.Println("去新马泰")
-	} else  {
+	} else {
 		// 如果再多，容我想想
 		fmt.Println("容我想想")
 	}

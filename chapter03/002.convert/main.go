@@ -13,12 +13,12 @@ func main() {
 func convertType() {
 	defer func() {
 		if e := recover(); e != nil {
-			fmt.Println("panic--->",e)
+			fmt.Println("panic--->", e)
 			debug.PrintStack()
 		}
 	}()
 	var a interface{}
 	a = "string aaa"
-	b := a.(int)  // panic: interface conversion: interface {} is string, not int
+	b := a.(int) // panic: interface conversion: interface {} is string, not int
 	fmt.Println(b)
 }

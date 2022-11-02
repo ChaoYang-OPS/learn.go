@@ -8,7 +8,7 @@ import (
 func panicAndRecover() {
 	defer coverPanicUpgraded() // 这样是能抓住严重错误的
 
-	defer func() {   // 这个是抓不住严重错误的
+	defer func() { // 这个是抓不住严重错误的
 		coverPanicUpgraded()
 	}()
 

@@ -20,7 +20,7 @@ func Marshal(v interface{}) string {
 		return ""
 	}
 }
-
+　
 type User struct {
 	Name string `json:"name,omitempty"`
 	Age  int    `json:"age"`
@@ -76,9 +76,9 @@ func main() {
 		Name: "TF",
 		Age:  19,
 	}
-	objm, err := json.Marshal(u)
+	object, err := json.Marshal(u)
 	if err != nil {
 		return
 	}
-	fmt.Println(string(objm))
+	fmt.Println(string(object))
 }

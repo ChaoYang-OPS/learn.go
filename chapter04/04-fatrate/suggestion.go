@@ -1,11 +1,11 @@
 package main
 
-func GetFatRateSuggestion() *fatRateSuggestion{
+func GetFatRateSuggestion() *fatRateSuggestion {
 	return &fatRateSuggestion{
 		suggArr: [][][]int{
-			{  // 第一个元素表示男  1: 05
+			{ // 第一个元素表示男  1: 05
 				{ // 18-39
-					0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
 				},
 				{ // 40-59
 
@@ -14,9 +14,9 @@ func GetFatRateSuggestion() *fatRateSuggestion{
 
 				},
 			},
-			{//第二个元素表示女
+			{ //第二个元素表示女
 				{ // 18-39
-					0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3,
 				},
 				{ // 40-59
 
@@ -33,11 +33,11 @@ type fatRateSuggestion struct {
 	suggArr [][][]int
 }
 
-func (s fatRateSuggestion)GetSuggestion(person *Person) string {
+func (s fatRateSuggestion) GetSuggestion(person *Person) string {
 	sexIdx := s.getIndexOfSex(person.sex)
 	ageIdx := s.getIndexOfAge(person.age)
-	maxFRSupported :=len(s.suggArr[sexIdx][ageIdx]) -1
-	frIdx := int(person.fatRate*100)
+	maxFRSupported := len(s.suggArr[sexIdx][ageIdx]) - 1
+	frIdx := int(person.fatRate * 100)
 	if frIdx > maxFRSupported {
 		frIdx = maxFRSupported
 	}
@@ -46,20 +46,19 @@ func (s fatRateSuggestion)GetSuggestion(person *Person) string {
 	//return "todo"
 }
 
-
 func (s *fatRateSuggestion) getIndexOfSex(sex string) int {
 	if sex == "男" {
 		return 0
 	}
-	return  1
+	return 1
 }
 func (s *fatRateSuggestion) getIndexOfAge(age int) int {
-	switch  {
-	case age >=18 && age <= 39:
+	switch {
+	case age >= 18 && age <= 39:
 		return 0
-	case age >=40&& age <= 59:
+	case age >= 40 && age <= 59:
 		return 1
-	case age >=60:
+	case age >= 60:
 		return 2
 	default:
 		return -1

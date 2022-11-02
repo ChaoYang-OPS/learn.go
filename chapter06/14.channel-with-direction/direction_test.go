@@ -3,13 +3,13 @@ package main
 import "testing"
 
 func TestWithDirection(t *testing.T) {
-	c := make(chan int,100)
+	c := make(chan int, 100)
 	inOnly(c)
 	outOnly(c)
 }
 
-func inOnly(c chan<- int){
-	c <-1
+func inOnly(c chan<- int) {
+	c <- 1
 	//<-c  // 当c是单向入 channel时，不能再取数，编译错误
 }
 func outOnly(c <-chan int) {

@@ -8,15 +8,15 @@ import (
 
 func main() {
 	m := sync.Map{}
-	for i := 0; i <100; i++{
+	for i := 0; i < 100; i++ {
 		go func(i int) {
 			for {
-				v,ok := m.Load(i)
-				if !ok{
+				v, ok := m.Load(i)
+				if !ok {
 					continue
 				}
-				m.Store(i,v.(int)+1)
-				fmt.Println("i=",v)
+				m.Store(i, v.(int)+1)
+				fmt.Println("i=", v)
 			}
 		}(i)
 	}

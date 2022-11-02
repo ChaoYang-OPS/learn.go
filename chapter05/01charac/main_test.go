@@ -15,9 +15,9 @@ func TestAssertion(t *testing.T) {
 	case TestBox:
 		fmt.Println("这是一个box，不能当冰箱用")
 	}
-	refrigerator,ok := checkIsRefrigerator(c)
+	refrigerator, ok := checkIsRefrigerator(c)
 	if ok {
-		fmt.Println("是个冰箱，开门装大象",refrigerator)
+		fmt.Println("是个冰箱，开门装大象", refrigerator)
 	} else {
 		fmt.Println("不是冰箱")
 	}
@@ -25,7 +25,7 @@ func TestAssertion(t *testing.T) {
 
 func checkIsRefrigerator(c Close) (Refrigerator, bool) {
 	r, ok := c.(Refrigerator)
-	return r,ok
+	return r, ok
 }
 
 type TestBox struct {

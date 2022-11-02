@@ -4,8 +4,8 @@ import "testing"
 
 func TestCase1(t *testing.T) {
 	r := FatRateRank{}
-	r.inputRecord("王强",0.38)
-	r.inputRecord("王强",0.32)
+	r.inputRecord("王强", 0.38)
+	r.inputRecord("王强", 0.32)
 	{
 		randOfWQ, fatRateOfWQ := r.getRank("王强")
 		if randOfWQ != 1 {
@@ -15,7 +15,7 @@ func TestCase1(t *testing.T) {
 			t.Fatalf("预期王强的体脂是0.32, 但得到的是: %f", fatRateOfWQ)
 		}
 	}
-	r.inputRecord("李静",0.28)
+	r.inputRecord("李静", 0.28)
 	randOfLJ, fatRateOfLJ := r.getRank("李静")
 	{
 		if randOfLJ != 1 {
@@ -29,9 +29,9 @@ func TestCase1(t *testing.T) {
 
 func TestCase2(t *testing.T) {
 	r := &FatRateRank{}
-	r.inputRecord("王强",0.38)
-	r.inputRecord("张伟",0.38)
-	r.inputRecord("李静",0.28)
+	r.inputRecord("王强", 0.38)
+	r.inputRecord("张伟", 0.38)
+	r.inputRecord("李静", 0.28)
 	randOfLJ, fatRateOfLJ := r.getRank("李静")
 	{
 		if randOfLJ != 1 {
@@ -63,8 +63,8 @@ func TestCase2(t *testing.T) {
 
 func TestCase3(t *testing.T) {
 	r := FatRateRank{}
-	r.inputRecord("王强",0.38)
-	r.inputRecord("李静",0.23)
+	r.inputRecord("王强", 0.38)
+	r.inputRecord("李静", 0.23)
 	r.inputRecord("张伟")
 	randOfLJ, fatRateOfLJ := r.getRank("李静")
 	{
@@ -91,4 +91,3 @@ func TestCase3(t *testing.T) {
 		}
 	}
 }
-

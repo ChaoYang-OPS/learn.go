@@ -12,7 +12,7 @@ func main() {
 	panicAndRecover()
 	// close call
 	closureMain()
-	calcSum(1,2,3,4,5)
+	calcSum(1, 2, 3, 4, 5)
 	showUsedTimes()
 	deferGuess()
 	openFile()

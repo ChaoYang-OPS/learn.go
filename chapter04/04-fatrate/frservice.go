@@ -1,13 +1,11 @@
 package main
 
-
-
 type fatRateService struct {
 	s *fatRateSuggestion
 }
 
 func (frsvc *fatRateService) GiveSuggestionToPerson(person *Person) string {
-	if err := person.calcBmi(); err !=nil{
+	if err := person.calcBmi(); err != nil {
 		return "错误"
 	}
 	person.calcFatRate()

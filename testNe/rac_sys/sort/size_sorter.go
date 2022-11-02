@@ -18,4 +18,3 @@ func (s SizeSorter) Sort(products []*common.Product) []*common.Product {
 	})
 	return products
 }
-

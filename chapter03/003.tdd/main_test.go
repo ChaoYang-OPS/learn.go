@@ -3,8 +3,8 @@ package main
 import "testing"
 
 func TestCase1(t *testing.T) {
-	inputRecord("王强",0.38)
-	inputRecord("王强",0.32)
+	inputRecord("王强", 0.38)
+	inputRecord("王强", 0.32)
 	{
 		randOfWQ, fatRateOfWQ := getRank("王强")
 		if randOfWQ != 1 {
@@ -14,7 +14,7 @@ func TestCase1(t *testing.T) {
 			t.Fatalf("预期王强的体脂是0.32, 但得到的是: %f", fatRateOfWQ)
 		}
 	}
-	inputRecord("李静",0.28)
+	inputRecord("李静", 0.28)
 	randOfLJ, fatRateOfLJ := getRank("李静")
 	{
 		if randOfLJ != 1 {
@@ -27,9 +27,9 @@ func TestCase1(t *testing.T) {
 }
 
 func TestCase2(t *testing.T) {
-	inputRecord("王强",0.38)
-	inputRecord("张伟",0.38)
-	inputRecord("李静",0.28)
+	inputRecord("王强", 0.38)
+	inputRecord("张伟", 0.38)
+	inputRecord("李静", 0.28)
 	randOfLJ, fatRateOfLJ := getRank("李静")
 	{
 		if randOfLJ != 1 {
@@ -60,8 +60,8 @@ func TestCase2(t *testing.T) {
 }
 
 func TestCase3(t *testing.T) {
-	inputRecord("王强",0.38)
-	inputRecord("李静",0.23)
+	inputRecord("王强", 0.38)
+	inputRecord("李静", 0.23)
 	inputRecord("张伟")
 	randOfLJ, fatRateOfLJ := getRank("李静")
 	{
@@ -88,4 +88,3 @@ func TestCase3(t *testing.T) {
 		}
 	}
 }
-

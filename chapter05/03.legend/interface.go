@@ -6,7 +6,6 @@ type PutElephantIntoRefrigerator interface {
 	CloseTheDoorOfRefrigerator(refrigerator Refrigerator) error
 }
 
-
 type Refrigerator struct {
 	Size string
 }

@@ -6,10 +6,10 @@ import (
 
 func Test_fatRateSuggestion_GetSuggestion(t *testing.T) {
 	sugg := GetFatRateSuggestion()
-	tests := []Person {
+	tests := []Person{
 		{
-			sex: "男",
-			age: 35,
+			sex:     "男",
+			age:     35,
 			fatRate: 0.24,
 		},
 	}

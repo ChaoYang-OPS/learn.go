@@ -86,9 +86,9 @@ func main() {
 
 	var i interface{}
 	i = 3
-	fmt.Println(reflect.TypeOf(i),"value:",i)
+	fmt.Println(reflect.TypeOf(i), "value:", i)
 	i = 3.2
-	fmt.Println(reflect.TypeOf(i),"value:",i)
+	fmt.Println(reflect.TypeOf(i), "value:", i)
 }
 
 type Open interface {

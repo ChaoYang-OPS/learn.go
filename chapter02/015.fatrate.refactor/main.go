@@ -93,7 +93,7 @@ func calcFatRate(weight float64, tall float64, age int, sexWeight int) float64 {
 	// 计算体脂率
 	//var bmi float64 = weight / (tall * tall)
 	bmi := v2.CalcBMI(tall, weight)
-	_ , _= v1.CalcBMI(tall, weight)
+	_, _ = v1.CalcBMI(tall, weight)
 	var fatRate float64 = (1.2*bmi + 0.23*float64(age) - 5.4 - 10.8*float64(sexWeight)) / 100
 	fmt.Println("体脂率是:", fatRate)
 	return fatRate

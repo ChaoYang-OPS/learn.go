@@ -8,14 +8,14 @@ import (
 
 type Store struct {
 	DataCount int
-	Max int
-	lock sync.Mutex
+	Max       int
+	lock      sync.Mutex
 }
 
 type Producer struct {
-
 }
-func(Producer) Produce(s *Store) {
+
+func (Producer) Produce(s *Store) {
 	s.lock.Lock()
 	defer s.lock.Unlock()
 	if s.DataCount == s.Max {
@@ -29,7 +29,7 @@ func(Producer) Produce(s *Store) {
 type Consumer struct {
 }
 
-func (Consumer) Consume(s *Store)  {
+func (Consumer) Consume(s *Store) {
 	s.lock.Lock()
 	defer s.lock.Unlock()
 	if s.DataCount == 0 {
@@ -43,23 +43,23 @@ func main() {
 	s := &Store{
 		Max: 10,
 	}
-	pCount,cCount := 50,50
-	for i :=0;i<pCount;i++{
+	pCount, cCount := 50, 50
+	for i := 0; i < pCount; i++ {
 		go func() {
-			for{
-				time.Sleep(100*time.Millisecond)
+			for {
+				time.Sleep(100 * time.Millisecond)
 				Producer{}.Produce(s)
 			}
 		}()
 	}
-	for i :=0;i<cCount;i++{
+	for i := 0; i < cCount; i++ {
 		go func() {
-			for{
-				time.Sleep(100*time.Millisecond)
+			for {
+				time.Sleep(100 * time.Millisecond)
 				Consumer{}.Consume(s)
 			}
 		}()
 	}
-	time.Sleep(1*time.Second)
+	time.Sleep(1 * time.Second)
 	fmt.Println(s.DataCount)
 }
