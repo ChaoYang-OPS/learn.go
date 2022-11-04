@@ -32,6 +32,21 @@ func timer() {
 	fmt.Println(time.Now().Unix())
 	tm.Stop()
 }
+func format() {
+	var a int = 6
+	fmt.Printf("%b\n", a)
+	type A struct {
+		Name string
+		Age  int
+	}
+	b := A{}
+	b.Name = "TF"
+	b.Age = 18
+	fmt.Printf("%T\n", b)
+	fmt.Printf("%v\n", b)
+	fmt.Printf("%+v\n", b)
+	fmt.Printf("%#v\n", b)
+}
 func main() {
 	//now := time.Now()
 	//fmt.Println(now)
@@ -68,4 +83,5 @@ func main() {
 	fmt.Println(t3.Unix())
 	ticker()
 	timer()
+	format()
 }
