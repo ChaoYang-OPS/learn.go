@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -15,6 +16,7 @@ func weeKdays() {
 	currentlyDay := time.Now()
 	fmt.Println(currentlyDay.Weekday().String())
 	fmt.Println(currentlyDay.Hour())
+	fmt.Println(runtime.NumCPU()) //16
 }
 
 func mergeFile(dir string) {
