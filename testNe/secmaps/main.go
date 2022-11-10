@@ -46,6 +46,10 @@ func rwShareMemory2() {
 	//	// 写入MAP
 	//	mp.Store(i, i)
 	//}
+	for i := 0; i < 100; i++ {
+		// 读取
+		mp.Load(i)
+	}
 }
 
 func main() {
@@ -57,4 +61,5 @@ func main() {
 	// fatal error: concurrent map writes
 	//fmt.Println(mp)
 	fmt.Println(mp.Load(1)) // 1 true
+	fmt.Println(mp.Load(3)) // 3 true
 }
