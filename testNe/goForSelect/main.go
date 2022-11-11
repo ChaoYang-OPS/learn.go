@@ -53,6 +53,7 @@ func main() {
 	//		}
 	//	}
 	// 使用return 可以直接退出 for + select 循环
+	// 03:21:35
 	for {
 		select {
 		case n := <-countCh:
