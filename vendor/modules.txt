@@ -1,3 +1,7 @@
+# github.com/BurntSushi/toml v1.2.1
+## explicit; go 1.16
+github.com/BurntSushi/toml
+github.com/BurntSushi/toml/internal
 # github.com/armstrongli/go-bmi v0.0.1
 ## explicit; go 1.16
 github.com/armstrongli/go-bmi
@@ -20,6 +24,9 @@ github.com/bytedance/sonic/internal/resolver
 github.com/bytedance/sonic/internal/rt
 github.com/bytedance/sonic/option
 github.com/bytedance/sonic/unquote
+# github.com/caarlos0/env/v6 v6.10.1
+## explicit; go 1.17
+github.com/caarlos0/env/v6
 # github.com/chenzhuoyu/base64x v0.0.0-20211019084208-fb5309c8db06
 ## explicit; go 1.15
 github.com/chenzhuoyu/base64x

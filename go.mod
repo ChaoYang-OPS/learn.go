@@ -3,10 +3,13 @@ module learn.go
 go 1.17
 
 require (
+	github.com/BurntSushi/toml v1.2.1
 	github.com/armstrongli/go-bmi v0.0.1
 	github.com/bytedance/sonic v1.5.0
+	github.com/caarlos0/env/v6 v6.10.1
 	github.com/gin-contrib/pprof v1.3.0
 	github.com/gin-gonic/gin v1.7.7
+	github.com/go-playground/validator/v10 v10.4.1
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/spf13/cobra v1.4.0
 	google.golang.org/protobuf v1.28.0
@@ -19,7 +22,6 @@ require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.13.0 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
-	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/golang/protobuf v1.5.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect

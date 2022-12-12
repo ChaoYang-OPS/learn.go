@@ -1,1 +1,7 @@
-package rest_demo_host
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello world")
+}

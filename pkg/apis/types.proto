@@ -11,8 +11,56 @@ message PersonalInformation {
     int64 age = 5;
     string addr = 6;
     string email = 7;
+    string mount = 8;
 }
 
+message SearchRequest {
+    // query data
+    string query = 1;
+    int32 page_number = 2;
+    int32 result_per_page = 3;
+    Corpus corpus = 4;
+}
+
+message SearchResponse {
+    repeated Result results = 1;
+}
+message Result {
+    string url = 1;
+    string title = 2;
+    repeated string snippets = 3;
+}
 message PersonalInformationList {
     repeated PersonalInformation items= 1;
+}
+
+enum Corpus {
+    CORPUS_UNSPECIFIED = 0;
+    CORPUS_UNIVERSAL = 1;
+    CORPUS_WEB = 2;
+    CORPUS_IMAGES = 3;
+    CORPUS_LOCAL = 4;
+    CORPUS_NEWS = 5;
+    CORPUS_PRODUCTS = 6;
+    CORPUS_VIDEO = 7;
+}
+
+enum EnumAllowingAlias {
+    option allow_alias = true;
+    EAA_UNSPECIFIED = 0;
+    EAA_STARTED = 1;
+    EAA_RUNNING = 1;
+    EAA_FINISHED = 2;
+}
+
+enum EnumNotAllowingAlias {
+    ENAA_UNSPECIFIED = 0;
+    ENAA_STARTED = 1;
+//        "apis.ENAA_RUNNING" uses the same enum value as "apis.ENAA_STARTED". If this is intended, set 'option allow_alias = true;' to the enum definition.
+//     ENAA_RUNNING = 1;  // Uncommenting this line will cause a compile error inside Google and a warning message outside.
+    ENAA_FINISHED = 2;
+}
+message Foo {
+    reserved 2,15, 9 to 11;
+    reserved "foor", "bar";
 }
