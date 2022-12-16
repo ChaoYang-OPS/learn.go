@@ -55,11 +55,6 @@ type Host struct {
 	*Describe
 }
 
-type QueryHostRequest struct {
-	PageSize   uint64 `json:"page_size,omitempty"`
-	PageNumber uint64 `json:"page_number,omitempty"`
-}
-
 type Resource struct {
 	Id          string            `json:"id"  validate:"required"`     // 全局唯一Id
 	Vendor      Vendor            `json:"vendor"`                      // 厂商

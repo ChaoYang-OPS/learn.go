@@ -1,18 +1,23 @@
 package configs
 
-import "sync"
+import (
+	"fmt"
+	"sync"
+)
 
 const (
 	TextFormat = LogFormat("text")
 	JsonFormat = LogFormat("json")
 )
 
+var config *Config
+
 type Config struct {
-	App   *app   `toml:"app"`
+	App   *App   `toml:"app"`
 	Log   *Log   `toml:"log"`
 	MySQL *MySQL `toml:"mysql"`
 }
-type app struct {
+type App struct {
 	Name      string `toml:"name" env:"APP_NAME"`
 	Host      string `toml:"host" env:"APP_HOST"`
 	Port      string `toml:"port" env:"APP_PORT"`
@@ -47,8 +52,8 @@ type MySQL struct {
 	lock        sync.Mutex
 }
 
-func newDefaultAPP() *app {
-	return &app{
+func newDefaultAPP() *App {
+	return &App{
 		Name: "demo",
 		Host: "127.0.0.1",
 		Port: "8050",
@@ -81,3 +86,18 @@ func newConfig() *Config {
 		MySQL: newDefaultMYSQL(),
 	}
 }
+func NewDefaultConfig() *Config {
+	return &Config{
+		App:   newDefaultAPP(),
+		Log:   newDefaultLog(),
+		MySQL: newDefaultMYSQL(),
+	}
+}
+func (a *App) HttpAddr() string {
+	return fmt.Sprintf("%s:%s", a.Host, a.Port)
+}
+
+// 连接池, driverConn具体的连接对象, 他维护着一个Socket
+// pool []*driverConn, 维护pool里面的连接都是可用的, 定期检查我们的conn健康情况
+// 某一个driverConn已经失效, driverConn.Reset(), 清空该结构体的数据, Reconn获取一个连接, 让该conn借壳存活
+// 避免driverConn结构体的内存申请和释放的一个成本

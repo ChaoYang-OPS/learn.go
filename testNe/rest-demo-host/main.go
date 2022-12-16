@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"learn.go/testNe/rest-demo-host/cmd"
+)
 
 func main() {
-	fmt.Println("Hello world")
+	if err := cmd.RootCmd.Execute(); err != nil {
+		fmt.Println(err)
+	}
 }
