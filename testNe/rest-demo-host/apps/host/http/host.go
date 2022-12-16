@@ -1,9 +1,9 @@
 package http
 
 import (
+	"github.com/gin-gonic/gin"
 	"learn.go/testNe/rest-demo-host/apps/host"
 	"log"
-	"net/http"
 )
 
 var (
@@ -24,4 +24,24 @@ func (h *handler) Config() error {
 	return nil
 }
 
-func (h *handler) QueryHost(w http.ResponseWriter)
+func (h *handler) createHost(c *gin.Context) {
+	ins := host.NewHost()
+	if err := c.Bind(ins); err != nil {
+		c.JSON(401, "error")
+		return
+	}
+	ins, err := h.service.CreateHost(c.Request.Context(), ins)
+	if err != nil {
+		c.JSON(400, "data error")
+		return
+	}
+	c.JSON(200, ins)
+}
+
+func (h *handler) Registry(r gin.IRouter) {
+	r.POST("/hosts", h.createHost())
+}
+
+func init() {
+	
+}

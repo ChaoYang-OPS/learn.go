@@ -1,17 +1,53 @@
 package host
 
-import "context"
+import (
+	"github.com/go-playground/validator/v10"
+	"time"
+)
+
+var (
+	validate = validator.New()
+)
+
+type Vendor int
 
 const (
-	PrivateIDC Vendor = iota
-	Tencent
-	AliYun
-	HuaWei
+	// 枚举的默认值
+	PRIVATE_IDC Vendor = iota
+	// 阿里云
+	ALIYUN
+	// 腾讯云
+	TXYUN
 )
 
 type HostSet struct {
 	Items []*Host `json:"items"`
 	Total int     `json:"total"`
+}
+
+func NewHostSet() *HostSet {
+	return &HostSet{Items: []*Host{}}
+}
+
+func (s *HostSet) Add(item *Host) {
+	s.Items = append(s.Items, item)
+}
+
+func NewHost() *Host {
+	return &Host{
+		Resource: &Resource{},
+		Describe: &Describe{},
+	}
+}
+
+func (h *Host) Validate() error {
+	return validate.Struct(h)
+}
+
+func (h *Host) InjectDefault() {
+	if h.CreateAt == 0 {
+		h.CreateAt = time.Now().UnixMilli()
+	}
 }
 
 type Host struct {
@@ -23,11 +59,6 @@ type QueryHostRequest struct {
 	PageSize   uint64 `json:"page_size,omitempty"`
 	PageNumber uint64 `json:"page_number,omitempty"`
 }
-type Service interface {
-	SaveHost(ctx context.Context, host *Host) (*Host, error)
-	QueryHost(ctx context.Context, req *QueryHostRequest) (*HostSet, error)
-}
-type Vendor int
 
 type Resource struct {
 	Id          string            `json:"id"  validate:"required"`     // 全局唯一Id
@@ -55,4 +86,71 @@ type Describe struct {
 	OSType       string `json:"os_type"`                    // 操作系统类型，分为Windows和Linux
 	OSName       string `json:"os_name"`                    // 操作系统名称
 	SerialNumber string `json:"serial_number"`              // 序列号
+}
+
+func NewQueryHostRequest() *QueryHostRequest {
+	return &QueryHostRequest{
+		PageSize:   20,
+		PageNumber: 1,
+	}
+}
+
+type QueryHostRequest struct {
+	PageSize   int    `json:"page_size"`
+	PageNumber int    `json:"page_number"`
+	Keywords   string `json:"kws"`
+}
+
+func (r *QueryHostRequest) GetPageSize() uint {
+	return uint(r.PageSize)
+}
+
+func (r *QueryHostRequest) OffSet() int64 {
+	return int64((r.PageNumber - 1) * r.PageSize)
+}
+
+func NewDescribeHostRequestWithId(id string) *DescribeHostRequest {
+	return &DescribeHostRequest{
+		Id: id,
+	}
+}
+
+type DescribeHostRequest struct {
+	Id string
+}
+
+type UPDATE_MODE string
+
+const (
+	// 全量更新
+	UPDATE_MODE_PUT UPDATE_MODE = "put"
+	// 局部更新
+	UPDATE_MODE_PATCH UPDATE_MODE = "patch"
+)
+
+func NewPutUpdateHostRequest(id string) *UpdateHostRequest {
+	h := NewHost()
+	h.Id = id
+	return &UpdateHostRequest{
+		UpdateMode: UPDATE_MODE_PUT,
+		Host:       h,
+	}
+}
+
+func NewPatchUpdateHostRequest(id string) *UpdateHostRequest {
+	h := NewHost()
+	h.Id = id
+	return &UpdateHostRequest{
+		UpdateMode: UPDATE_MODE_PATCH,
+		Host:       h,
+	}
+}
+
+type UpdateHostRequest struct {
+	UpdateMode UPDATE_MODE `json:"update_mode"`
+	*Host
+}
+
+type DeleteHostRequest struct {
+	Id string
 }
