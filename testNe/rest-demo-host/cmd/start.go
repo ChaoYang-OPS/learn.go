@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"learn.go/testNe/rest-demo-host/apps"
+	_ "learn.go/testNe/rest-demo-host/apps/all"
 	"learn.go/testNe/rest-demo-host/configs"
 	"learn.go/testNe/rest-demo-host/protocol"
 	"log"

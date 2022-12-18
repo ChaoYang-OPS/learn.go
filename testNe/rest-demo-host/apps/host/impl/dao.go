@@ -83,11 +83,11 @@ func (i *HostServiceImpl) update(ctx context.Context, ins *host.Host) error {
 	defer func() {
 		if err != nil {
 			if err := tx.Rollback(); err != nil {
-				i.l.Error("rollback error, %s", err)
+				i.l.Printf("rollback error, %s", err)
 			}
 		} else {
 			if err := tx.Commit(); err != nil {
-				i.l.Error("commit error, %s", err)
+				i.l.Printf("commit error, %s", err)
 			}
 		}
 	}()

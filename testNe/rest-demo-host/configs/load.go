@@ -65,16 +65,16 @@ func (m *MySQL) getDBConn() (*sql.DB, error) {
 }
 
 // GetDB todo
-func (m *MySQL) GetDB() (*sql.DB, error) {
+func (m *MySQL) GetDB() *sql.DB {
 	// 加载全局数据量单例
 	m.lock.Lock()
 	defer m.lock.Unlock()
 	if db == nil {
 		conn, err := m.getDBConn()
 		if err != nil {
-			return nil, err
+			return nil
 		}
 		db = conn
 	}
-	return db, nil
+	return db
 }

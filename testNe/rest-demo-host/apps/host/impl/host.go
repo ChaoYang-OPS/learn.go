@@ -11,9 +11,6 @@ var _ host.Service = &HostServiceImpl{}
 //	return nil
 //}
 
-func (h *HostServiceImpl) SaveHost(ctx context.Context, host *host.Host) (*Host, error) {
-	return nil, nil
-}
-func (h *HostServiceImpl) QueryHost(ctx context.Context, req *host.QueryHostRequest) (*HostSet, error) {
+func (h *HostServiceImpl) SaveHost(ctx context.Context, host *host.Host) (*host.Host, error) {
 	return nil, nil
 }
